@@ -125,7 +125,9 @@ The above ideas can be implemented as packages for each area.
 
 https://github.com/bots-garden/simplism
 - has WASM sso plugins can be run without anything else.
-- NATS ?
+
+https://github.com/bots-garden/slingshot
+- same but with NATS.
 
 
 ## zips
@@ -149,6 +151,20 @@ Wazero ( https://github.com/tetratelabs/wazero ) can act as the Plugin runner fo
 asnyc-api with code gen: https://github.com/lerenn/asyncapi-codegen will gen all NATS code for us.
 
 Now all Clients and Servers have a way to call each other in a bi-directional way for anything without a NATS dependency in their code.
+
+## Logging
+
+NATS so all logs from all clients and servers are in the same plaace to make bugs easier to debug.
+
+We can easily isolate them by user in real time thanks to NATS wildcards.
+
+## Proxy
+
+If we want we can add NATS as a Proxy with Caddy later so that all users are load balanced without anything else needed.
+
+If we use the nats.go and nats. js libs then this load balancing is global, so that if a Data center does doens users will not notice a thing and when the data center comes back up it will self recover. Its basically BGP Anycast for free.
+
+https://github.com/sandstorm/caddy-nats-bridge is one example but its HTTP based so not what i am looking for ...
 
 
 
